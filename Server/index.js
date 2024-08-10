@@ -11,7 +11,7 @@ app.use(express.json())
 
 
 // To connect to Mongodb Atlas
-const uri ="mongodb+srv://Todolist:Todolist@cluster0.mf4t103.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const uri ="Add your Mongodb Atlas link here"
 const TodoModel = require('./models/Todo')
 
 
