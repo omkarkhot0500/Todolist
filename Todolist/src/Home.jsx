@@ -8,7 +8,7 @@ function Home(){
     const [todos,setTodos]=useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:3001/get')
+        axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/get`)
         .then(result => setTodos(result.data))   // Here we store the data from the database to the "todos"
         .catch(err => console.log(err))
     },[])
@@ -16,7 +16,7 @@ function Home(){
 
   const handleEdit = (id, currentStatus) => {
     // Toggle the `done` status
-    axios.put(`http://localhost:3001/update/${id}`, { done: !currentStatus })     // Here we are passing "done" as opposite of the current-status of the done of the component
+    axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/update/${id}`, { done: !currentStatus })     // Here we are passing "done" as opposite of the current-status of the done of the component
     .then(response => {
         // Update the todo state with the new status
         setTodos(todos.map(todo =>
@@ -29,7 +29,8 @@ function Home(){
 
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:3001/delete/${id}`)
+        // axios.delete(`http://localhost:3001/delete/${id}`)
+        axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/delete/${id}`)
             .then(() => {
                 setTodos(todos.filter(todo => todo._id !== id));    // This code is for UI , where as data from backend is not used here because to use it we need to reload
             })

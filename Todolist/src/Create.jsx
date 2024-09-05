@@ -13,7 +13,8 @@ const Create = ({ onTaskAdded }) => {
           return;
       }
 
-      axios.post('http://localhost:3001/add', { task:pass })   // Here we are passing value of pass to the task 
+      //axios.post('http://localhost:3001/add', { task:pass })   // Here we are passing value of pass to the task 
+      axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/add`, { task:pass })   // Here we are passing value of pass to the task 
           .then(result => {
               onTaskAdded(result.data);  // Notify the parent component of the new task
               setPass('');  // Clear the input field

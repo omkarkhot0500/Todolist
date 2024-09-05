@@ -1,22 +1,20 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors')
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
-const app = express()
-app.use(cors())
-app.use(express.json())
+// Load environment variables from .env file
+dotenv.config();
 
-// To connect to local mongodb
-// mongoose.connect('mongodb://127.0.0.1:27017/TodoList')
+const app = express();
+app.use(cors());
+app.use(express.json());
 
+// Import your Todo model
+const TodoModel = require('./models/Todo');
 
-// To connect to Mongodb Atlas
-const uri ="Add your Mongodb Atlas link here"
-const TodoModel = require('./models/Todo')
-
-
-// Connect to MongoDB using Mongoose
-mongoose.connect(uri, {
+// Connect to MongoDB using Mongoose and URI from the .env file
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -26,7 +24,6 @@ mongoose.connect(uri, {
 .catch((error) => {
   console.error('Error connecting to MongoDB Atlas:', error);
 });
-
 
 
 
